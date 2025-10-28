@@ -95,13 +95,25 @@ AI_Language_Enhancer/
    
    The app will open at `http://localhost:3000`
 
+## 📸 Screenshots
+
+### Homepage - Initial Loading
+![Acharya AI Homepage](./screenshots/homepage.png)
+
+The clean, modern interface with the Acharya AI logo and Telugu language support.
+
+### After Audio Enhancement
+![Audio Enhancement Result](./screenshots/enhancement-result.png)
+
+Shows the original transcription and the enhanced, corrected Telugu text with token usage.
+
 ## 📖 Usage
 
 1. **Grant Microphone Permission**: When you first click the record button, your browser will ask for microphone access
 2. **Record Telugu Audio**: Click the microphone button and speak in Telugu
 3. **Stop Recording**: Click again to stop (timer shows elapsed time)
 4. **Process**: Click "Process Audio" to transcribe and get enhanced Telugu response
-5. **View Results**: See original transcription, enhanced Roman Telugu, and token usage
+5. **View Results**: See original transcription, enhanced Telugu text, and token usage
 6. **Review History**: All conversations saved with timestamps and token details
 7. **Learn**: Review corrections to improve your Telugu skills
 

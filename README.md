@@ -1,18 +1,18 @@
-# 🇮🇳 Telugu Language Enhancement AI
+# ✍️ Acharya AI - Telugu Language Enhancement
 
-A specialized AI system that accepts Telugu audio input, transcribes it using OpenAI's Whisper API, and provides enhanced, grammatically correct Telugu responses in Roman script. The system acts as a Senior Telugu Language Professor dedicated to preserving and enhancing the beauty of the Telugu language.
+**Acharya** (ఆచార్య - meaning "Teacher" in Telugu) is a precise, professional, and respectful virtual Telugu language expert. This AI system accepts Telugu audio input, transcribes it using OpenAI's Whisper API, and provides enhanced, grammatically correct Telugu text while strictly preserving the original meaning and tone.
 
 ## ✨ Features
 
 - 🎤 **Real-time Audio Recording**: Record Telugu audio directly from your browser
-- 🗣️ **Speech-to-Text**: Powered by OpenAI Whisper API for accurate Telugu transcription
-- 📝 **Grammar Correction**: Automatic correction of Telugu grammatical errors
-- ✨ **Text Enhancement**: Improve clarity, vocabulary, and eloquence
-- 🔤 **Roman Transliteration**: Get phonetic English-alphabet output
-- 🚫 **Language Restriction**: Politely declines non-Telugu input
-- 💬 **Conversation History**: Track corrections and improvements
+- 🗣️ **Speech-to-Text**: Powered by OpenAI Whisper (gpt-4o-transcribe) for accurate Telugu transcription
+- 📝 **Grammar & Spelling Correction**: Fixes all grammatical errors, spelling mistakes, and punctuation
+- ✨ **Text Enhancement**: Improves sentence structure, vocabulary, and clarity
+- 🎯 **Meaning Preservation**: Strictly maintains original intent and tone - never alters meaning
+- 🚫 **Telugu-Only Processing**: Politely declines non-Telugu script input in Telugu
+- 💬 **Conversation History**: Track all corrections and improvements with timestamps
 - ⚡ **Token Tracking**: Monitor API usage per message and session total
-- 🎨 **Modern UI**: Beautiful gradient design with Telugu text support
+- 🎨 **Modern UI**: Beautiful gradient design with pen logo and Telugu text support
 - 🔒 **Secure**: Environment-based API key management
 
 ## 🏗️ Architecture
@@ -106,10 +106,14 @@ AI_Language_Enhancer/
 7. **Learn**: Review corrections to improve your Telugu skills
 
 ### Example Workflow
-- **You speak**: "నేను పుస్తకం చదువుతున్నాడు"
-- **AI transcribes**: "నేను పుస్తకం చదువుతున్నాడు"
-- **AI enhances**: "Nenu pustakam chadhuvutunnaanu"
-- **AI explains** (optional): Grammar correction applied
+
+**Input (with grammar error)**:
+- **You speak**: "ఆమె రేపు ఆఫీస్ కి వెళ్తాడు" (incorrect verb conjugation)
+
+**Output (corrected)**:
+- **AI transcribes**: "ఆమె రేపు ఆఫీస్ కి వెళ్తాడు"
+- **AI enhances**: "ఆమె రేపు ఆఫీస్ కి వెళ్తుంది" (corrected: వెళ్తాడు → వెళ్తుంది)
+- **Note**: Only corrected text is returned, no explanations unless explicitly requested
 
 ## 🔌 API Endpoints
 
@@ -124,12 +128,13 @@ Transcribe audio file to text
 ### `POST /chat`
 Get AI-enhanced Telugu response for text input
 - **Input**: JSON with Telugu message and optional conversation history
-- **Output**: Enhanced Roman Telugu text with token usage
+- **Output**: Corrected Telugu text (in Telugu script) with token usage
+- **Behavior**: Returns only the corrected text, no explanations
 
 ### `POST /process-audio`
 Complete pipeline: transcribe Telugu audio + enhance text
 - **Input**: Telugu audio file
-- **Output**: Transcription + Enhanced Roman Telugu + Token usage
+- **Output**: Original transcription + Enhanced Telugu text + Token usage
 
 ### `GET /health`
 Check API health and configuration status
@@ -138,10 +143,12 @@ Check API health and configuration status
 
 ### Backend
 - **FastAPI**: Modern, fast web framework for building APIs
-- **OpenAI API**: Whisper-1 for Telugu speech-to-text, GPT-4o-mini for language enhancement
+- **OpenAI API**: 
+  - **gpt-4o-transcribe**: Advanced Telugu speech-to-text transcription
+  - **gpt-4o-mini**: Language enhancement and grammar correction
 - **Uvicorn**: ASGI server
 - **Python-dotenv**: Environment variable management
-- **Custom System Prompt**: Senior Telugu Professor persona with comprehensive instructions
+- **Acharya System Prompt**: Precise, professional Telugu language expert with strict rules
 
 ### Frontend
 - **React 18**: UI library
@@ -206,18 +213,41 @@ Check API health and configuration status
 For comprehensive product information, see:
 - **[PRD.md](./PRD.md)**: Complete Product Requirements Document with architecture, features, and specifications
 
-## 🎯 System Behavior
+## 🎯 Acharya AI System Behavior
 
-### Telugu Input
-- Analyzes grammar, clarity, and vocabulary
-- Provides enhanced Roman Telugu output
-- Optionally explains significant corrections
-- Maintains original meaning and tone
+### Core Function
+Acharya receives text in Telugu script and returns a polished, correct version with:
+- ✅ Grammar corrections (verb conjugations, case endings, etc.)
+- ✅ Spelling fixes
+- ✅ Improved sentence structure (clarity and flow)
+- ✅ Enhanced vocabulary (precise, appropriate word choices)
+- ✅ Punctuation corrections
 
-### Non-Telugu Input
-- Politely declines in Telugu
-- Response: "Kshaminchhandi, nenu Telugu tappa itara bhashalalo manchiga maatlaadalenu. Dayachesi Telugulo maatlaadandi."
-- Does not process non-Telugu content
+### Core Rules
+
+1. **Output Format**: Response is ONLY the final, corrected text in Telugu script
+2. **Meaning Preservation**: NEVER alters the user's original intent or meaning
+3. **No Explanations**: Does not explain corrections unless explicitly asked
+4. **Telugu-Only**: If input is NOT in Telugu script (e.g., English, Hindi, etc.), responds with:
+   > "క్షమించండి, నేను కేవలం తెలుగు లిపిలో రాసిన వాక్యాలను మాత్రమే సరిదిద్దగలను. దయచేసి మీ అభ్యర్థనను తెలుగులో అందించండి."
+
+### Examples
+
+**Example 1 - Grammar Error**:
+- Input: `ఆమె రేపు ఆఫీస్ కి వెళ్తాడు.`
+- Output: `ఆమె రేపు ఆఫీస్ కి వెళ్తుంది.`
+
+**Example 2 - Word Order/Clarity**:
+- Input: `నేను చూసాను ఆ సినిమా నిన్న చాలా బాగుంది.`
+- Output: `నేను నిన్న చూసిన ఆ సినిమా చాలా బాగుంది.`
+
+**Example 3 - Vocabulary Enhancement**:
+- Input: `మీరు దయచేసి నాకు కొంచెం హెల్ప్ చేస్తారా?`
+- Output: `మీరు దయచేసి నాకు కొంచెం సహాయం చేస్తారా?`
+
+**Example 4 - Non-Telugu Input**:
+- Input: `Hello, how are you?`
+- Output: `క్షమించండి, నేను కేవలం తెలుగు లిపిలో రాసిన వాక్యాలను మాత్రమే సరిదిద్దగలను. దయచేసి మీ అభ్యర్థనను తెలుగులో అందించండి.`
 
 ## 📝 License
 
@@ -233,6 +263,8 @@ For questions or issues, please open a GitHub issue.
 
 ---
 
-**Built with ❤️ for the Telugu language using OpenAI, React, and FastAPI**
+**Built with ❤️ for the Telugu language community**
 
-**తెలుగు భాష మెరుగుదల కోసం ప్రేమతో రూపొందించబడింది**
+**Acharya AI - Your Telugu Language Expert**
+
+**ఆచార్య AI - తెలుగు భాష మెరుగుదల సహాయకి**

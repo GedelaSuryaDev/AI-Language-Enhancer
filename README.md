@@ -220,11 +220,6 @@ Check API health and configuration status
 - Make sure backend is running on port 8000
 - Check CORS configuration in `main.py`
 
-## 📚 Documentation
-
-For comprehensive product information, see:
-- **[PRD.md](./PRD.md)**: Complete Product Requirements Document with architecture, features, and specifications
-
 ## 🎯 Acharya AI System Behavior
 
 ### Core Function
